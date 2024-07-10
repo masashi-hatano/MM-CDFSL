@@ -1,0 +1,21 @@
+hydra:
+  run:
+    dir: ./output/${now:%Y-%m-%d}/${now:%H-%M-%S}/pretrain_RGB
+defaults:
+  - _self_
+  - trainer: pretrain_trainer
+  - data_module: pretrain_data_module
+
+seed: 42
+monitored_metric: loss
+dirpath: checkpoints/
+train: True
+test: False
+accelerator: gpu
+devices: [0, 1]
+strategy: deepspeed
+ckpt_path:
+
+save_ckpt_freq: 5
+batch_size: 48
+num_workers: 4

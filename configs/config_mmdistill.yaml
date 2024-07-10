@@ -1,0 +1,21 @@
+hydra:
+  run:
+    dir: ./output/${now:%Y-%m-%d}/${now:%H-%M-%S}/mmdistill_ego4d-epic
+
+defaults:
+  - _self_
+  - trainer: mm_distill_trainer
+  - data_module: mm_distill_data_module
+
+seed: 42
+monitored_metric: loss
+dirpath: checkpoints/
+train: True
+test: False
+accelerator: gpu
+devices: [0, 1]
+strategy: deepspeed
+ckpt_path:
+
+batch_size: 64
+num_workers: 6

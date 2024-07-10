@@ -1,0 +1,7 @@
+# Modality specific parameters
+# model parameters
+in_chans: 21
+decoder_num_classes: 672 # in_chans*(tubelet*(patches**2)=32)
+
+# loss weight
+lambda_ce: 0.01

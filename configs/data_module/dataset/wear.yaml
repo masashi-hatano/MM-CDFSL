@@ -1,0 +1,7 @@
+# Target Dataset
+# WEAR
+target_dataset: WEAR
+target_data_dir: /mnt/ssd1/mahatano/WEAR/
+fewshot_eval_json_path: /mnt/ssd1/mahatano/cdfsl/target/wear/annotations/wear_val.json
+unlabel_json_path: /mnt/ssd1/mahatano/cdfsl/target/wear/annotations/wear_unlabel.json
+target_sampling_rate: 8

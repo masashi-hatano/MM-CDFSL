@@ -1,0 +1,62 @@
+defaults:
+  - _self_
+  - dataset: epic  # epic, meccano, wear
+
+# Augmentation parameters
+color_jitter: 0.0
+train_interpolation: bicubic
+
+# Modality parameters
+mode: ['RGB', 'flow', 'pose']
+mean: [
+  [0.485, 0.456, 0.406],
+  [0.0507, 0.4671],
+  [
+    0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3,
+    0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3,
+    0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3,
+  ]
+]
+std: [
+  [0.229, 0.224, 0.225],
+  [10.9280, 8.6857],
+  [
+    0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3,
+    0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3,
+    0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3,
+  ]
+]
+input_size: [224, 224, 56]
+patch_size: [
+  [16, 16],
+  [16, 16],
+  [4, 4]
+]
+
+# Source dataset
+# Ego4D
+source_data_dir: /mnt/ssd1/mahatano/ego4d_data/v1/
+source_json_path: /mnt/ssd1/mahatano/cdfsl/source/ego4d/annotations/ego4d_train.json
+source_sampling_rate: 4
+
+num_frames: 16
+mask_type: tube # ['random', 'tube']
+mask_ratio: 0.75
+
+num_classes_action: 204 # ego4d: 204, epic: 228
+num_classes_verb: 33 # ego4d: 33, epic: 27
+num_classes_noun: 66 # ego4d: 66, epic: 89
+
+n_way: 5
+k_shot: 5
+q_sample: 15
+episodes: 600
+
+# Delete video (Ego4D)
+delete: [
+  "d18ef16d-f803-4387-bb5e-7876f1522a63",
+  "77ed1624-f87b-4196-9a0a-95b7023b18e4",
+  "128f69dd-f61d-494f-84c2-f3a8c937ae8f",
+  "09910d48-41f9-4a84-bb1b-1bc96de62286",
+  "8e914832-2dd1-44fd-81f8-1b7e2ccd2402",
+]

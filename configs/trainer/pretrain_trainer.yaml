@@ -1,0 +1,24 @@
+defaults:
+  - _self_
+  - modality: rgb  # rgb, flow, pose
+
+# Model parameters
+model: pretrain_videomae_small_patch16_224
+pretrain: /path/to/pretrain/videomae_small_patch16_224.pth
+normalize_target: True
+encoder_embed_dim: 384
+
+# Optimizer parameters
+epochs: 100
+
+opt: adamw
+opt_eps: 1e-8
+opt_betas: [0.9, 0.95]
+momentum: 0.9
+weight_decay: 0.05
+
+lr: 1.5e-4
+warmup_lr: 1e-6
+min_lr: 1e-5
+warmup_epochs: 10
+use_checkpoint: False

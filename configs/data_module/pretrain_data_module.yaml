@@ -1,0 +1,28 @@
+defaults:
+  - _self_
+  - modality: rgb  # rgb, flow, pose
+  - dataset: epic  # epic, meccano, wear
+
+# Augmentation parameters
+color_jitter: 0.0
+train_interpolation: bicubic
+
+# Dataset params
+num_frames: 16
+mask_type: tube # ['random', 'tube']
+mask_ratio: 0.9
+
+# Source Dataset
+# Ego4D
+source_data_dir: /mnt/ssd1/mahatano/ego4d_data/v1
+source_json_path: /mnt/ssd1/mahatano/cdfsl/source/ego4d/annotations/ego4d_train.json
+source_sampling_rate: 4
+
+# Delete video
+delete: [
+  "d18ef16d-f803-4387-bb5e-7876f1522a63",
+  "77ed1624-f87b-4196-9a0a-95b7023b18e4",
+  "128f69dd-f61d-494f-84c2-f3a8c937ae8f",
+  "09910d48-41f9-4a84-bb1b-1bc96de62286",
+  "8e914832-2dd1-44fd-81f8-1b7e2ccd2402",
+]
