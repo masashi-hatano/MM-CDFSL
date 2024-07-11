@@ -45,7 +45,7 @@ python3 lit_main_mmdistill.py train=True test=False
 ## 🔍 Evaluation
 To evaluate the model in 5-way 5-shot setting with 600 runs, please run the following command.
 ```bash
-python3 lit_main_mmdistill.py train=False test=False data_module.n_way=5 data_module.k_shot=5 data_module.episodes=600
+python3 lit_main_mmdistill.py train=False test=True data_module.n_way=5 data_module.k_shot=5 data_module.episodes=600
 ```
 
 ## ✍️ Citation
