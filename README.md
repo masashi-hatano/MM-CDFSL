@@ -25,10 +25,14 @@ pip install -r requirements.txt
 
 ## 📂 Data Preparation
 ### Training Split
-You can find the training split files for all three target datasets in `cdfsl` folders.
+You can find the train/val split files for all three target datasets in `cdfsl` folders.
+
+### Data Structure
+Please follow the data structure as detailed in [DATA_STRUCTURE.md](https://github.com/masashi-hatano/MM-CDFSL/blob/main/DATA_STRUCTURE.md).
 
 ## 📍 Model Zoo
 You can brouse the checkpoints of pre-trained model, comparison methods, and our models in this [folder](https://keio.box.com/s/ltyp8yksxa9nuyx77f5ma6bxbv7s8389) or directly download from the following links.
+
 ### Pre-Train
 
 <div align="center">
