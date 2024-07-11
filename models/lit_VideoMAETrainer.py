@@ -149,9 +149,15 @@ class VideoMAETrainer(pl.LightningModule):
 
     def on_train_epoch_end(self):
         train_loss = np.mean([output["loss"] for output in self.training_step_outputs])
-        train_recon_loss_source = np.mean([output["recon_loss_source"] for output in self.training_step_outputs])
-        train_recon_loss_target = np.mean([output["recon_loss_target"] for output in self.training_step_outputs])
-        train_ce_loss = np.mean([output["ce_loss"] for output in self.training_step_outputs])
+        train_recon_loss_source = np.mean(
+            [output["recon_loss_source"] for output in self.training_step_outputs]
+        )
+        train_recon_loss_target = np.mean(
+            [output["recon_loss_target"] for output in self.training_step_outputs]
+        )
+        train_ce_loss = np.mean(
+            [output["ce_loss"] for output in self.training_step_outputs]
+        )
         self.log("train_loss", train_loss, on_step=False)
         self.log("train_recon_loss_source", train_recon_loss_source, on_step=False)
         self.log("train_recon_loss_target", train_recon_loss_target, on_step=False)

@@ -1,10 +1,12 @@
 import logging
 
 # from models.modeling_finetune import *
-from models.modeling_pretrain import (pretrain_videomae_base_patch16_224,
-                                      pretrain_videomae_huge_patch16_224,
-                                      pretrain_videomae_large_patch16_224,
-                                      pretrain_videomae_small_patch16_224)
+from models.modeling_pretrain import (
+    pretrain_videomae_base_patch16_224,
+    pretrain_videomae_huge_patch16_224,
+    pretrain_videomae_large_patch16_224,
+    pretrain_videomae_small_patch16_224,
+)
 from models.videomae_classifier import videomae_classifier_small_patch16_224
 
 logger = logging.getLogger(__name__)

@@ -1,6 +1,5 @@
 from datamodule.unlabel_loader.epic_unlabel_loader import EPICUnlabelLoader
-from datamodule.unlabel_loader.meccano_unlabel_loader import \
-    MECCANOUnlabelLoader
+from datamodule.unlabel_loader.meccano_unlabel_loader import MECCANOUnlabelLoader
 from datamodule.unlabel_loader.wear_unlabel_loader import WEARUnlabelLoader
 
 

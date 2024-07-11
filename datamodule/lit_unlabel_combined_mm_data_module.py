@@ -4,12 +4,15 @@ from torch.utils.data import DataLoader
 from torch.utils.data.distributed import DistributedSampler
 from torch.utils.data.sampler import BatchSampler
 
-from datamodule.dataset.ego4d_unlabel_combined_multimodal_dataset import \
-    Ego4DUnlabelCombinedMMDataset
-from datamodule.utils.augmentation import (DataAugmentationForUnlabelMM,
-                                           DataAugmentationForUnlabelRGB,
-                                           DataAugmentationForVideoMAERGB,
-                                           MaskGeneration)
+from datamodule.dataset.ego4d_unlabel_combined_multimodal_dataset import (
+    Ego4DUnlabelCombinedMMDataset,
+)
+from datamodule.utils.augmentation import (
+    DataAugmentationForUnlabelMM,
+    DataAugmentationForUnlabelRGB,
+    DataAugmentationForVideoMAERGB,
+    MaskGeneration,
+)
 from datamodule.utils.episodic_batch_sampler import EpisodicBatchSampler
 from netscripts.get_fewshot_eval_dataset import get_fewshot_eval_dataset
 
@@ -36,7 +39,11 @@ class UnlabelCombinedMMDataModule(pl.LightningDataModule):
         self.transform_eval_rgb = DataAugmentationForVideoMAERGB(
             cfg.data_module, multi_scale_crop=False
         )
-        self.transform_train = [self.transform_train_rgb, self.transform_train_flow, self.transform_train_pose]
+        self.transform_train = [
+            self.transform_train_rgb,
+            self.transform_train_flow,
+            self.transform_train_pose,
+        ]
         self.transform_eval = self.transform_eval_rgb
 
     def setup(self, stage=None):
@@ -55,7 +62,11 @@ class UnlabelCombinedMMDataModule(pl.LightningDataModule):
                 drop_last=True,
             )
             self.val_dataset = get_fewshot_eval_dataset(
-                self.data_module_cfg.dataset, self.transform_eval, self.mask_gen, self.data_module_cfg.num_frames, "RGB"
+                self.data_module_cfg.dataset,
+                self.transform_eval,
+                self.mask_gen,
+                self.data_module_cfg.num_frames,
+                "RGB",
             )
             batch_sampler = BatchSampler(
                 sampler=DistributedSampler(
@@ -76,7 +87,11 @@ class UnlabelCombinedMMDataModule(pl.LightningDataModule):
             )
         elif stage == "test":
             self.test_dataset = get_fewshot_eval_dataset(
-                self.data_module_cfg.dataset, self.transform_eval, self.mask_gen, self.data_module_cfg.num_frames, "RGB"
+                self.data_module_cfg.dataset,
+                self.transform_eval,
+                self.mask_gen,
+                self.data_module_cfg.num_frames,
+                "RGB",
             )
             self.episodic_batch_sampler_test = EpisodicBatchSampler(
                 dataset=self.test_dataset,

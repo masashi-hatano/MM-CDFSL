@@ -13,8 +13,7 @@ class NTXentLoss(torch.nn.Module):
         self.device = device
         self.softmax = torch.nn.Softmax(dim=-1)
         self.mask_samples_from_same_repr = self._get_correlated_mask().type(torch.bool)
-        self.similarity_function = self._get_similarity_function(
-            use_cosine_similarity)
+        self.similarity_function = self._get_similarity_function(use_cosine_similarity)
         self.criterion = torch.nn.CrossEntropyLoss(reduction="sum")
 
     def _get_similarity_function(self, use_cosine_similarity):
@@ -26,10 +25,8 @@ class NTXentLoss(torch.nn.Module):
 
     def _get_correlated_mask(self):
         diag = np.eye(2 * self.batch_size)
-        l1 = np.eye((2 * self.batch_size), 2 *
-                    self.batch_size, k=-self.batch_size)
-        l2 = np.eye((2 * self.batch_size), 2 *
-                    self.batch_size, k=self.batch_size)
+        l1 = np.eye((2 * self.batch_size), 2 * self.batch_size, k=-self.batch_size)
+        l2 = np.eye((2 * self.batch_size), 2 * self.batch_size, k=self.batch_size)
         mask = torch.from_numpy((diag + l1 + l2))
         mask = (1 - mask).type(torch.bool)
         return mask  # .to(self.device)
@@ -52,8 +49,7 @@ class NTXentLoss(torch.nn.Module):
     def forward(self, zis, zjs):
         representations = torch.cat([zjs, zis], dim=0)
 
-        similarity_matrix = self.similarity_function(
-            representations, representations)
+        similarity_matrix = self.similarity_function(representations, representations)
 
         # filter out the scores from the positive samples
         l_pos = torch.diag(similarity_matrix, self.batch_size)
@@ -61,7 +57,8 @@ class NTXentLoss(torch.nn.Module):
         positives = torch.cat([l_pos, r_pos]).view(2 * self.batch_size, 1)
 
         negatives = similarity_matrix[self.mask_samples_from_same_repr].view(
-            2 * self.batch_size, -1)
+            2 * self.batch_size, -1
+        )
 
         logits = torch.cat((positives, negatives), dim=1)
         logits /= self.temperature

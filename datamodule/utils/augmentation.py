@@ -1,10 +1,17 @@
 from torchvision import transforms
 
-from datamodule.utils.masking_generator import (RandomMaskingGenerator,
-                                                TubeMaskingGenerator)
-from datamodule.utils.transform import (GroupMultiScaleCrop, GroupNormalize,
-                                        GroupScale, Stack, ToTensor,
-                                        ToTorchFormatTensor)
+from datamodule.utils.masking_generator import (
+    RandomMaskingGenerator,
+    TubeMaskingGenerator,
+)
+from datamodule.utils.transform import (
+    GroupMultiScaleCrop,
+    GroupNormalize,
+    GroupScale,
+    Stack,
+    ToTensor,
+    ToTorchFormatTensor,
+)
 
 
 class DataAugmentationForVideoMAERGB(object):
@@ -86,11 +93,7 @@ class MaskGeneration(object):
 
 class DataAugmentationForUnlabelRGB(object):
     def __init__(
-        self,
-        cfg,
-        input_size=224,
-        mean=[0.485, 0.456, 0.406],
-        std=[0.229, 0.224, 0.225]
+        self, cfg, input_size=224, mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]
     ):
         self.cfg = cfg
         self.input_size = input_size

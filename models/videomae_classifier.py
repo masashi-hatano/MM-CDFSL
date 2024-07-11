@@ -1,14 +1,11 @@
 import logging
 
-import numpy as np
 import torch
 import torch.nn as nn
 import torch.utils.checkpoint as checkpoint
 
-from models.modeling_finetune import (Block, PatchEmbed,
-                                      get_sinusoid_encoding_table)
-from models.modeling_pretrain import (PretrainVisionTransformerEncoder,
-                                      trunc_normal_)
+from models.modeling_finetune import Block, PatchEmbed, get_sinusoid_encoding_table
+from models.modeling_pretrain import PretrainVisionTransformerEncoder, trunc_normal_
 
 logger = logging.getLogger(__name__)
 
@@ -40,9 +37,9 @@ class ViTEncoder(nn.Module):
     ):
         super().__init__()
         self.num_classes = num_classes
-        self.num_features = (
-            self.embed_dim
-        ) = embed_dim  # num_features for consistency with other models
+        self.num_features = self.embed_dim = (
+            embed_dim  # num_features for consistency with other models
+        )
         self.patch_embed = PatchEmbed(
             img_size=img_size,
             patch_size=patch_size,
@@ -227,7 +224,13 @@ class VideoMAEClassifier(nn.Module):
 
 
 def videomae_classifier_small_patch16_224(
-    ckpt_pth=None, img_size=224, patch_size=16, in_chans=3, num_classes_action=204, use_mean_pooling=False, **kwargs
+    ckpt_pth=None,
+    img_size=224,
+    patch_size=16,
+    in_chans=3,
+    num_classes_action=204,
+    use_mean_pooling=False,
+    **kwargs,
 ):
     model = VideoMAEClassifier(
         img_size=img_size,
@@ -248,8 +251,11 @@ def videomae_classifier_small_patch16_224(
         od = p["module"]
         pretrained_dict = {}
         for k, v in od.items():
-            if ("student_rgb." in k and "encoder." in k):  # or ("model." in k and "head_action." in k):
-                k = k.replace("_forward_module.student_rgb.", "")  # model or student_rgb
+            if "model." in k and "encoder." in k:
+                k = k.replace("_forward_module.model.", "")
+                pretrained_dict[k] = v
+            elif "student_rgb." in k and "encoder." in k:
+                k = k.replace("_forward_module.student_rgb.", "")
                 pretrained_dict[k] = v
         # print(pretrained_dict.keys())
         model_dict = model.state_dict()

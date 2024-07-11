@@ -1,7 +1,7 @@
 # Target Dataset
 # EPIC
 target_dataset: EPIC
-target_data_dir: /mnt/ssd1/mahatano/EPIC-KITCHENS-55/
-fewshot_eval_json_path: /mnt/ssd1/mahatano/cdfsl/target/epic/annotations/epic-55_val.json
-unlabel_json_path: /mnt/ssd1/mahatano/cdfsl/target/epic/annotations/epic-55_unlabel.json
+target_data_dir: /data/EPIC-KITCHENS-55/
+fewshot_eval_json_path: /cdfsl/target/epic/annotations/epic-55_val.json
+unlabel_json_path: /cdfsl/target/epic/annotations/epic-55_unlabel.json
 target_sampling_rate: 8

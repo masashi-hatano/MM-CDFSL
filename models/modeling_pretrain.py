@@ -6,8 +6,12 @@ import torch.utils.checkpoint as checkpoint
 from timm.models.layers import trunc_normal_ as __call_trunc_normal_
 from timm.models.registry import register_model
 
-from models.modeling_finetune import (Block, PatchEmbed, _cfg,
-                                      get_sinusoid_encoding_table)
+from models.modeling_finetune import (
+    Block,
+    PatchEmbed,
+    _cfg,
+    get_sinusoid_encoding_table,
+)
 
 
 def trunc_normal_(tensor, mean=0.0, std=1.0):
@@ -48,9 +52,9 @@ class PretrainVisionTransformerEncoder(nn.Module):
     ):
         super().__init__()
         self.num_classes = num_classes
-        self.num_features = (
-            self.embed_dim
-        ) = embed_dim  # num_features for consistency with other models
+        self.num_features = self.embed_dim = (
+            embed_dim  # num_features for consistency with other models
+        )
         self.patch_embed = PatchEmbed(
             img_size=img_size,
             patch_size=patch_size,
@@ -176,9 +180,9 @@ class PretrainVisionTransformerDecoder(nn.Module):
         super().__init__()
         self.num_classes = num_classes
         assert num_classes == out_chans * tubelet_size * patch_size**2
-        self.num_features = (
-            self.embed_dim
-        ) = embed_dim  # num_features for consistency with other models
+        self.num_features = self.embed_dim = (
+            embed_dim  # num_features for consistency with other models
+        )
         self.patch_size = patch_size
         self.use_checkpoint = use_checkpoint
 
@@ -421,7 +425,9 @@ def pretrain_videomae_small_patch16_224(
         od = p["model"]
         pretrained_dict = {}
         for k, v in od.items():
-            if ("encoder." in k and "patch_embed." in k) or ("decoder." in k and "head." in k):
+            if ("encoder." in k and "patch_embed." in k) or (
+                "decoder." in k and "head." in k
+            ):
                 # RGB
                 if in_chans == 3:
                     pretrained_dict[k] = v

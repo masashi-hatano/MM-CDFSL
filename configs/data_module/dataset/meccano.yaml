@@ -1,7 +1,7 @@
 # Target Dataset
 # MECCANO
 target_dataset: MECCANO
-target_data_dir: /mnt/ssd1/mahatano/MECCANO/
-fewshot_eval_json_path: /mnt/ssd1/mahatano/cdfsl/target/meccano/annotations/meccano_val.json
-unlabel_json_path: /mnt/ssd1/mahatano/cdfsl/target/meccano/annotations/meccano_unlabel.json
+target_data_dir: /data/MECCANO/
+fewshot_eval_json_path: /cdfsl/target/meccano/annotations/meccano_val.json
+unlabel_json_path: /cdfsl/target/meccano/annotations/meccano_unlabel.json
 target_sampling_rate: 1

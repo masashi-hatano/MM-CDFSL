@@ -10,19 +10,13 @@ class CrossModalTranslate(nn.Module):
         super(CrossModalTranslate, self).__init__()
         self.dim = encoder_embed_dim
         self.mlp_to_flow = nn.Sequential(
-            nn.Linear(self.dim, self.dim),
-            nn.ReLU(),
-            nn.Linear(self.dim, self.dim)
+            nn.Linear(self.dim, self.dim), nn.ReLU(), nn.Linear(self.dim, self.dim)
         )
         self.mlp_to_rgb = nn.Sequential(
-            nn.Linear(self.dim, self.dim),
-            nn.ReLU(),
-            nn.Linear(self.dim, self.dim)
+            nn.Linear(self.dim, self.dim), nn.ReLU(), nn.Linear(self.dim, self.dim)
         )
         self.mlp_to_pose = nn.Sequential(
-            nn.Linear(self.dim, self.dim),
-            nn.ReLU(),
-            nn.Linear(self.dim, self.dim)
+            nn.Linear(self.dim, self.dim), nn.ReLU(), nn.Linear(self.dim, self.dim)
         )
 
     def forward(self, x):

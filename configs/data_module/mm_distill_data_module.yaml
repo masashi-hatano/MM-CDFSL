@@ -35,8 +35,8 @@ patch_size: [
 
 # Source dataset
 # Ego4D
-source_data_dir: /mnt/ssd1/mahatano/ego4d_data/v1/
-source_json_path: /mnt/ssd1/mahatano/cdfsl/source/ego4d/annotations/ego4d_train.json
+source_data_dir: /data/ego4d_data/v1/
+source_json_path: /cdfsl/source/ego4d/annotations/ego4d_train.json
 source_sampling_rate: 4
 
 num_frames: 16

@@ -126,7 +126,9 @@ class Ego4DUnlabelCombinedDataset(torch.utils.data.Dataset):
             else:
                 frame = frames[-1]
         elif mode == "pose":
-            dir_to_keypoint_frame = str(dir_to_img_frame).replace("RGB_frames", "hand-pose/heatmap")
+            dir_to_keypoint_frame = str(dir_to_img_frame).replace(
+                "RGB_frames", "hand-pose/heatmap"
+            )
             path = Path(
                 dir_to_keypoint_frame,
                 self.unlabel_loader.get_frame_str(frame_name).replace("jpg", "npy"),

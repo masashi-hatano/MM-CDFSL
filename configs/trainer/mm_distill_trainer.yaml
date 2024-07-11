@@ -1,9 +1,9 @@
 # Model parameters
 model: videomae_classifier_small_patch16_224
 ckpt_path: [
-  /home/mahatano/workspace/cdfsl/dynamic++/output/exp/mmdistill_pretrain=S+CE_ego4d-epic/checkpoints/epoch=99-val_top1_action=0.5588.ckpt/checkpoint/mp_rank_00_model_states.pt,
-  /home/mahatano/workspace/cdfsl/dynamic++/output/exp/pretrain_S+T+CE_FLOW_ego4d-meccano_epoch=100/checkpoints/epoch=29-loss=0.4442/checkpoint/mp_rank_00_model_states.pt,
-  /home/mahatano/workspace/cdfsl/dynamic++/output/exp/pretrain_S+T+CE_pose_ego4d-meccano_epoch=100/checkpoints/epoch=34-loss=0.1403/checkpoint/mp_rank_00_model_states.pt
+  /path/to/pretrain/rgb.pt,
+  /path/to/pretrain/flow.pt,
+  /path/to/pretrain/pose.pt
 ]
 in_chans: [3, 2, 21]
 use_mean_pooling: True

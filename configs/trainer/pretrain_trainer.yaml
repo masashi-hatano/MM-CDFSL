@@ -4,7 +4,7 @@ defaults:
 
 # Model parameters
 model: pretrain_videomae_small_patch16_224
-pretrain: /path/to/pretrain/videomae_small_patch16_224.pth
+pretrain: /pretrain/videomae_small_patch16_224.pth
 normalize_target: True
 encoder_embed_dim: 384
 

@@ -35,7 +35,7 @@ class MMDistillTrainer(pl.LightningModule):
             ckpt_pth=cfg.trainer.ckpt_path[1],
             input_size=cfg.data_module.input_size[1],
             patch_size=cfg.data_module.patch_size[1][0],
-            in_chans=cfg.trainer.in_chans[1]
+            in_chans=cfg.trainer.in_chans[1],
         )
         self.teacher_pose = get_model(
             cfg,
@@ -170,8 +170,8 @@ class MMDistillTrainer(pl.LightningModule):
         )
 
         # mask
-        support_mask = bool_masked_pos[:k_shot * n_way]
-        query_mask = bool_masked_pos[k_shot * n_way:]
+        support_mask = bool_masked_pos[: k_shot * n_way]
+        query_mask = bool_masked_pos[k_shot * n_way :]
 
         action_idx = action_idx.view(n_way, (k_shot + q_sample))
         support_action_label, query_action_label = (
@@ -225,14 +225,16 @@ class MMDistillTrainer(pl.LightningModule):
         )
 
         # mask
-        support_mask = bool_masked_pos[:k_shot * n_way]
+        support_mask = bool_masked_pos[: k_shot * n_way]
 
         query_masks = []
         for _ in range(2):
-            query_mask = bool_masked_pos[k_shot * n_way:]
+            query_mask = bool_masked_pos[k_shot * n_way :]
             query_masks.append(query_mask)
             # Shift by 1 in the batch dimension
-            bool_masked_pos = torch.cat((bool_masked_pos[1:], bool_masked_pos[:1]), dim=0)
+            bool_masked_pos = torch.cat(
+                (bool_masked_pos[1:], bool_masked_pos[:1]), dim=0
+            )
 
         action_idx = action_idx.view(n_way, (k_shot + q_sample))
         support_action_label, query_action_label = (
@@ -276,10 +278,16 @@ class MMDistillTrainer(pl.LightningModule):
         top1_action_ensemble_std = np.std(
             [output["top1_action_ensemble"] for output in self.test_step_outputs]
         )
-        top1_action_ensemble_std_error = top1_action_ensemble_std / np.sqrt(len(self.test_step_outputs))
+        top1_action_ensemble_std_error = top1_action_ensemble_std / np.sqrt(
+            len(self.test_step_outputs)
+        )
         self.log("top1_action_ensemble", top1_action_ensemble, on_step=False)
         self.log("top1_action_ensemble_std", top1_action_ensemble_std, on_step=False)
-        self.log("top1_action_ensemble_std_error", top1_action_ensemble_std_error, on_step=False)
+        self.log(
+            "top1_action_ensemble_std_error",
+            top1_action_ensemble_std_error,
+            on_step=False,
+        )
 
     def scale_lr(self):
         self.total_batch_size = self.cfg.batch_size * len(self.cfg.devices)
@@ -311,7 +319,16 @@ class MMDistillTrainer(pl.LightningModule):
         return frames, support_frames, query_frames
 
     @torch.no_grad()
-    def LR(self, model, support, support_label, query, support_mask=None, query_mask=None, norm=False):
+    def LR(
+        self,
+        model,
+        support,
+        support_label,
+        query,
+        support_mask=None,
+        query_mask=None,
+        norm=False,
+    ):
         """logistic regression classifier"""
         support = model(support, support_mask)[0].detach()
         query = model(query, query_mask)[0].detach()
@@ -340,7 +357,16 @@ class MMDistillTrainer(pl.LightningModule):
         return pred, prob
 
     @torch.no_grad()
-    def LR_ensemble(self, model, support, support_label, query, support_mask=None, query_masks=None, norm=False):
+    def LR_ensemble(
+        self,
+        model,
+        support,
+        support_label,
+        query,
+        support_mask=None,
+        query_masks=None,
+        norm=False,
+    ):
         """logistic regression classifier"""
         support = model(support, support_mask)[0].detach()
 

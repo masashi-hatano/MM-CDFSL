@@ -97,19 +97,19 @@ class EPICFewshotEvalDataset(torch.utils.data.Dataset):
         # [T, H, W, C] -> [T*C, H, W] -> [C, T, H, W]
         if self.mode == "RGB":
             frames, _ = self.transform((frames, None))
-            frames = frames.view(
-                (self.num_frames, 3) + frames.size()[-2:]
-            ).transpose(0, 1)
+            frames = frames.view((self.num_frames, 3) + frames.size()[-2:]).transpose(
+                0, 1
+            )
         elif self.mode == "flow":
             frames, _ = self.transform(frames)
-            frames = frames.view(
-                (self.num_frames, 2) + frames.size()[-2:]
-            ).transpose(0, 1)
+            frames = frames.view((self.num_frames, 2) + frames.size()[-2:]).transpose(
+                0, 1
+            )
         elif self.mode == "pose":
             frames, _ = self.transform(frames)
-            frames = frames.view(
-                (self.num_frames, 21) + frames.size()[-2:]
-            ).transpose(0, 1)
+            frames = frames.view((self.num_frames, 21) + frames.size()[-2:]).transpose(
+                0, 1
+            )
 
         # mask generation
         mask = self.mask_gen()

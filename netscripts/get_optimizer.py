@@ -232,6 +232,7 @@ def get_optimizer_weight(cfg, model, niter_per_epoch):
 
     return optimizer
 
+
 def get_optimizer_mmdistill(cfg, model, niter_per_epoch):
     optim_params = [{"params": m.parameters()} for m in model]
     optimizer = optim.AdamW(optim_params, lr=cfg.lr, weight_decay=cfg.weight_decay)

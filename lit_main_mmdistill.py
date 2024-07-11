@@ -9,8 +9,7 @@ import torch
 from pytorch_lightning import Trainer, loggers
 from pytorch_lightning.callbacks import ModelCheckpoint
 
-from datamodule.lit_unlabel_combined_mm_data_module import \
-    UnlabelCombinedMMDataModule
+from datamodule.lit_unlabel_combined_mm_data_module import UnlabelCombinedMMDataModule
 from models.lit_MMDistillTrainer import MMDistillTrainer
 
 warnings.filterwarnings("ignore")

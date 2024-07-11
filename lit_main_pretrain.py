@@ -8,8 +8,9 @@ import numpy as np
 import torch
 from pytorch_lightning import Trainer, loggers
 
-from datamodule.lit_unlabel_combined_pretrain_data_module import \
-    UnlabelCombinedPretrainDataModule
+from datamodule.lit_unlabel_combined_pretrain_data_module import (
+    UnlabelCombinedPretrainDataModule,
+)
 from models.lit_VideoMAETrainer import VideoMAETrainer
 
 warnings.filterwarnings("ignore")
@@ -18,6 +19,7 @@ logger = logging.getLogger(__name__)
 
 @hydra.main(config_path="configs", config_name="config_pretrain.yaml")
 def main(cfg):
+    print(cfg.trainer)
     # initialize random seeds
     torch.cuda.manual_seed_all(cfg.seed)
     torch.manual_seed(cfg.seed)
