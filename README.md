@@ -6,7 +6,7 @@
 <a href="https://pytorchlightning.ai/"><img alt="Lightning" src="https://img.shields.io/badge/-Lightning-792ee5?logo=pytorchlightning&logoColor=white"></a>
 <a href="https://hydra.cc/"><img alt="Config: Hydra" src="https://img.shields.io/badge/Config-Hydra-89b8cd"></a>
 
-**[[Paper](https://masashi-hatano.github.io/assets/pdf/mm-cdfsl.pdf)][[Supplementary](https://masashi-hatano.github.io/assets/pdf/mm-cdfsl_supp.pdf)][[Project Page](https://masashi-hatano.github.io/MM-CDFSL/)][[Poster](https://masashi-hatano.github.io/assets/pdf/mm-cdfsl_poster.pdf)]**
+**[[Paper](https://masashi-hatano.github.io/assets/pdf/mm-cdfsl.pdf)][[Supplementary](https://masashi-hatano.github.io/assets/pdf/mm-cdfsl_supp.pdf)][[Project Page](https://masashi-hatano.github.io/MM-CDFSL/)][[Poster](https://masashi-hatano.github.io/assets/pdf/mm-cdfsl_poster.pdf)][[Data](https://huggingface.co/datasets/masashi-hatano/MM-CDFSL/tree/main)]**
 
 </div>
 
@@ -29,6 +29,9 @@ You can find the train/val split files for all three target datasets in `cdfsl` 
 
 ### Data Structure
 Please follow the data structure as detailed in [DATA_STRUCTURE.md](https://github.com/masashi-hatano/MM-CDFSL/blob/main/DATA_STRUCTURE.md).
+
+### Pre-processed Data
+You can download the pre-processed data from the [hub](https://huggingface.co/datasets/masashi-hatano/MM-CDFSL/tree/main).
 
 ## 📍 Model Zoo
 You can brouse the checkpoints of pre-trained model, comparison methods, and our models in this [folder](https://keio.box.com/s/ltyp8yksxa9nuyx77f5ma6bxbv7s8389) or directly download from the following links.
@@ -83,7 +86,7 @@ python3 lit_main_pretrain.py train=True test=False
 ```
 
 ### 2. Multimodal Distillation
-Please make sure that you set modality (e.g., rgb) and dataset (e.g., epic) in `configs/trainer/mm_distill_trainer.yaml` and `confings/data_module/mm_distill_data_module.yaml`.
+Please make sure that you set dataset (e.g., epic) in `confings/data_module/mm_distill_data_module.yaml`.
 Also, you need to set the ckpt path of all modalities in `configs/trainer/mm_distill_trainer.yaml`.
 ```bash
 python3 lit_main_mmdistill.py train=True test=False 
@@ -92,7 +95,7 @@ python3 lit_main_mmdistill.py train=True test=False
 ## 🔍 Evaluation
 To evaluate the model in 5-way 5-shot setting with 600 runs, please run the following command.
 ```bash
-python3 lit_main_mmdistill.py train=False test=False data_module.n_way=5 data_module.k_shot=5 data_module.episodes=600
+python3 lit_main_mmdistill.py train=False test=True data_module.n_way=5 data_module.k_shot=5 data_module.episodes=600
 ```
 
 ## ✍️ Citation
