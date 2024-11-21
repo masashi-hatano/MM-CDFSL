@@ -102,9 +102,9 @@ python3 lit_main_mmdistill.py train=False test=True data_module.n_way=5 data_mod
 If you use this code for your research, please cite our paper.
 ```bib
 @inproceedings{Hatano2024MMCDFSL,
-    author = {Masashi Hatano, Ryo Hachiuma, Ryo Fujii and Hideo Saito},
-    title = {Multimodal Cross-Domain Few-Shot Learning for Egocentric Action Recognition},
-    booktitle = {European Conference on Computer Vision (ECCV)},
-    year = {2024},
+  author = {Hatano, Masashi and Hachiuma, Ryo and Fujii, Ryo and Saito, Hideo},
+  title = {Multimodal Cross-Domain Few-Shot Learning for Egocentric Action Recognition},
+  booktitle = {European Conference on Computer Vision (ECCV)},
+  year = {2024},
 }
 ```
