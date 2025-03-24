@@ -73,7 +73,7 @@
             </div>
 
             <div class="is-size-5 publication-authors">
-              <span class="author-block">Keio University<sup>1</sup>, NVIDIA<sup>2</sup><br></span>
+              <span class="author-block"><sup>1</sup> Keio University, <sup>2</sup> NVIDIA<br></span>
               <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
             </div>
 
@@ -143,7 +143,9 @@
                   <a href="https://huggingface.co/datasets/masashi-hatano/MM-CDFSL/tree/main" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
-                      <i class="fa fa-database"></i>
+                      <img src="https://huggingface.co/favicon.ico" alt="Hugging Face Logo"
+                        style="width: 20px; height: 20px;" />
+                      <!-- <i class="fa fa-database"></i> -->
                     </span>
                     <span>Data</span>
                   </a>
@@ -176,6 +178,11 @@
   <section class="section hero is-small">
     <div class="container is-max-desktop">
       <img src="static/images/dataset.jpg" alt="MY ALT TEXT" />
+      <figcaption><b>Samples from each dataset</b>. A curated selection of RGB images from each dataset: <a
+          href="https://ego4d-data.org/" target="_blank">Ego4D</a>, <a href="https://epic-kitchens.github.io/"
+          target="_blank">EPIC-Kitchens</a>, <a href="https://iplab.dmi.unict.it/MECCANO/" target="_blank">MECCANO</a>,
+        and <a href="https://mariusbock.github.io/wear/" target="_blank">WEAR</a>, showcase
+        the domain gap between source and target datasets.</figcaption>
     </div>
   </section>
   <!-- End image Approach -->
@@ -221,6 +228,10 @@
     <div class="container is-max-desktop">
       <h2 class="title is-3">Approach</h2>
       <img src="static/images/mm-cdfsl.jpg" alt="MY ALT TEXT" />
+      <figcaption><b>The framework of our proposed method</b>. Our approach has two meta-training and two meta-testing
+        stages: 1. learning domain-adapted and class-discriminative features for all modalities, 2. distilling the
+        multimodal features into student RGB encoder, 3. few-shot learning for adopting novel classes, and 4. ensemble
+        masked inference using <i>P</i> Tube Masking during inference.</figcaption>
     </div>
   </section>
   <!-- End image Approach -->
@@ -297,6 +308,23 @@
     </div>
   </section>
   <!--End paper poster -->
+
+  <!-- Acknowledement -->
+  <!-- <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Acknowledement</h2>
+          <div class="content has-text-justified">
+            <p>
+              This work was supported by JST BOOST, Japan Grant Number JPMJBS2409, and Amano Institute of Technology.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+  <!-- End acknowledgement -->
 
   <!--BibTex citation -->
   <section class="section" id="BibTeX">
